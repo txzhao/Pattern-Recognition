@@ -31,11 +31,12 @@ for i = 1 : T
         cur_pD = DiscreteD(mc.TransitionProb(S(i - 1), :));
     end
     
-    if finiteDuration(mc) && rand(cur_pD, 1) == nS + 1
+    cur_S = rand(cur_pD, 1);
+    if finiteDuration(mc) && cur_S == nS + 1
         S = S(1 : i - 1);
         break;
     end
-    S(i) = rand(cur_pD, 1);
+    S(i) = cur_S;
 end
 
 

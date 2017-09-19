@@ -1,0 +1,10 @@
+% build up HMM sources
+q = [0.75; 0.25];
+A = [0.99 0.01; 0.03 0.97];
+mc = MarkovChain(q, A);
+b1 = GaussD('Mean', 0, 'StDev', 1);
+b2 = GaussD('Mean', 3, 'StDev', 2); 
+h = HMM(mc, [b1; b2]);
+
+
+x = rand(h, 10000); 
