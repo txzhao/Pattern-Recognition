@@ -4,6 +4,9 @@ The task of assignment 1 is to code and verify MatLab methods to generate an out
 
 ## Diagram of HMM 
 
+<p align="center">
+  <img src="https://github.com/txzhao/Pattern-Recognition/blob/master/pic/HMM-diagram.png"/>
+</p>
 
 ## How to run
 
