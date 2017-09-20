@@ -1,19 +1,47 @@
-clear all;
+clear;
 
-% build up HMM sources
-q = [0.75; 0.25];
-A = [0.99 0.01; 0.03 0.97];
-mc = MarkovChain(q, A);
-b1 = GaussD('Mean', 0, 'StDev', 1);
-b2 = GaussD('Mean', 3, 'StDev', 2); 
-h = HMM(mc, [b1; b2]);
+%% build up HMM sources
+para = testCasePara('regular HMM');
+mc = MarkovChain(para.q, para.A);
+h = HMM(mc, [para.b1; para.b2]);
 
-% generate an output sequence of observation
-[X, S] = rand(h, 10000); 
-f_S = zeros(1, length(q));
+%% verify MarkovChain rand method
+T = 10000;
+S = rand(mc, T); 
+f_S = zeros(1, length(para.q));
 
 % calculate relative frequency of occurrences
-for i = 1 : length(q)
+disp('------- verify MarkovChain rand method -------');
+for i = 1 : length(para.q)
     f_S(i) = sum(S == i)/length(S);
     disp(['Freq of St = ', num2str(i), ': ', num2str(f_S(i))]);
 end
+fprintf('\r');
+
+%% verify HMM rand method 
+nSamples = 10000;
+[X, ~] = rand(h, nSamples);
+mu = mean(X);
+va = var(X);
+disp('------- verify HMM rand method -------');
+disp(['Mean of Xt: ', num2str(mu)]);
+disp(['Var of Xt: ', num2str(va)]);
+fprintf('\r');
+
+%% HMM impression
+nSamples = 500;
+[X, S] = rand(h, nSamples);
+subplot(2, 1, 1);
+plot(1:length(S), S);
+title('Plot of state St with respect to time step t')
+xlabel('t')
+ylabel('St')
+subplot(2, 1, 2);
+plot(1:length(X), X);
+title('Plot of contiguous samples Xt with respect to time step t')
+xlabel('t')
+ylabel('Xt')
+
+
+
+
