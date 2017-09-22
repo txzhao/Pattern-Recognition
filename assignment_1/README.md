@@ -9,4 +9,12 @@
     <img src="https://github.com/txzhao/Pattern-Recognition/blob/master/pic/HMM-diagram.png"/>
   </p>
   
+  ## Pipeline
+  
+  At time frame t,
+  - Generate a state *St* by sampling the current probability distribution *pt*;
+  - Sample an output *Xt* from corresponding sub-source related to current state *St*;
+  - Update current probability distribution *pt* with the transition probability vector *A(St, :)*;
+  - Go back to the first step and repeat the whole process.
+  
   ## How to run
