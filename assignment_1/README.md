@@ -18,3 +18,5 @@
   - Go back to the first step and repeat the whole process.
   
   ## How to run
+
+Script ```verify.m``` serves as an entry point of the whole task.   
