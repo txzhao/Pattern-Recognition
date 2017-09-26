@@ -1,9 +1,21 @@
 clear;
 
 %% build up HMM sources
-para = testCasePara('same-mean HMM');
+test_name = 'vector-output HMM';
+para = testCasePara(test_name);
 mc = MarkovChain(para.q, para.A);
 h = HMM(mc, [para.b1; para.b2]);
+
+disp('------- basic parameter info -------');
+disp(['test case: ' test_name]);
+disp('initial probability: ');
+disp(para.q);
+disp('transition matrix: ');
+disp(para.A);
+disp('output distribution: ');
+disp(para.b1); disp(para.b2);
+fprintf('\r');
+
 
 %% verify MarkovChain rand method
 T = 10000; 
@@ -26,11 +38,11 @@ for i = 1 : length(para.q)
     subplot(2, 1, i)
     scatter(1 : n_trial, f_S(:, i));
     title(['Relative frequency of S = ' num2str(i) ' with respect to index of trials'])
-    xlabel('Index of trials')
-    ylabel('Relative frequency')
+    xlabel('Index of trials'); ylabel('Relative frequency');
 end
 
 fprintf('\r');
+
 
 %% verify HMM rand method 
 nSamples = 10000;
@@ -63,30 +75,32 @@ figure;
 subplot(2, 1, 1);
 plot(1:length(S), S);
 title('Plot of state St with respect to time step t')
-xlabel('t')
-ylabel('St')
+xlabel('t'); ylabel('St');
 subplot(2, 1, 2);
 plot(1:length(X), X);
 title('Plot of contiguous samples Xt with respect to time step t')
-xlabel('t')
-ylabel('Xt')
+xlabel('t'); ylabel('Xt');
+% legend('feature 1', 'feature 2');
+
 
 %% verify finite HMM
-nSamples = 500;
-n_trial = 2000;
-max_steps = 10;
-S_len_prob = zeros(1, nSamples);
+if strcmp(test_name, 'finite-duration HMM')
+    nSamples = 500;
+    n_trial = 1000;
+    max_steps = 10;
+    S_len_prob = zeros(1, nSamples);
 
-% calculate exiting probabilities after different steps
-for n = 1 : n_trial
-    [X, S] = rand(h, nSamples);
-    S_len_prob(length(S)) = S_len_prob(length(S)) + 1;
-end
-S_len_prob = S_len_prob/n_trial; 
+    % calculate exiting probabilities after different steps
+    for n = 1 : n_trial
+        [X, S] = rand(h, nSamples);
+        S_len_prob(length(S)) = S_len_prob(length(S)) + 1;
+    end
+    S_len_prob = S_len_prob/n_trial; 
 
-% output results
-disp('------- verify finite HMM -------');
-for i = 1 : max_steps
-    disp(['Prob of sequence length = ' num2str(i) ': ' num2str(S_len_prob(i))]);
+    % output results
+    disp('------- verify finite HMM -------');
+    for i = 1 : max_steps
+        disp(['Prob of sequence length = ' num2str(i) ': ' num2str(S_len_prob(i))]);
+    end
 end
 
