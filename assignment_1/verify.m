@@ -1,7 +1,7 @@
 clear;
 
 %% build up HMM sources
-test_name = 'vector-output HMM';
+test_name = 'regular HMM';
 para = testCasePara(test_name);
 mc = MarkovChain(para.q, para.A);
 h = HMM(mc, [para.b1; para.b2]);
