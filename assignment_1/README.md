@@ -19,4 +19,4 @@
   
   ## How to run
 
-Script ```verify.m``` serves as an entry point of the whole task, and ```testCasePara.m``` contains parameters of different test cases. To start your verification, please first change the variable ```test_name = 'regular HMM';``` at the beginning of ```verify.m``` to the right test-case name defined in ```testCasePara.m```, and then run ```verify.m``` to get outputs.
+Script ```verify.m``` serves as an entry point of the whole task, and ```testCasePara.m``` contains parameters of different test cases. To start your verification, please first change the variable ```test_name``` at the beginning of ```verify.m``` to the right test-case name ('regular HMM'/'same-mean HMM'/'finite-duration HMM'/'vector-output HMM') defined in ```testCasePara.m```, and then run ```verify.m``` to get outputs.
