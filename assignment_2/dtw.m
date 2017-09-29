@@ -1,3 +1,6 @@
+% This code is directly taken from https://cn.mathworks.com/matlabcentral/fileexchange/6516-dynamic-time-warping
+% Code author: Timothy Felty
+
 function [Dist,D,k,w]=dtw(t,r)
 %Dynamic Time Warping Algorithm
 %Dist is unnormalized distance between t and r
