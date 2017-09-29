@@ -15,6 +15,8 @@
 % 12*log2(p/base_p) + 1. The newly-derived feature semitone is continuous,
 % and ranges between (0, 13). Silent and noisy regions are filled with
 % random values around 0.
+%
+% Code author: Tianxiao Zhao
 
 function semitone = PostProcess(frIseq, verbose)
 
