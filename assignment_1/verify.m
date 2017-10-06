@@ -1,7 +1,7 @@
 clear;
 
 %% build up HMM sources
-test_name = 'regular HMM';
+test_name = 'vector-output HMM';
 para = testCasePara(test_name);
 mc = MarkovChain(para.q, para.A);
 h = HMM(mc, [para.b1; para.b2]);
@@ -102,5 +102,16 @@ if strcmp(test_name, 'finite-duration HMM')
     for i = 1 : max_steps
         disp(['Prob of sequence length = ' num2str(i) ': ' num2str(S_len_prob(i))]);
     end
+end
+
+%% verify vector-output HMM
+if strcmp(test_name, 'vector-output HMM')
+    figure;
+    plot(X(1, S == 1), X(2, S == 1), 'o');
+    hold on; grid on;
+    plot(X(1, S == 2), X(2, S == 2), 'o');
+    title('Plot of two-dimensional distribution of output Xt');
+    xlabel('Xt_1'); ylabel('Xt_2');
+    legend('S = 1', 'S = 2');
 end
 
