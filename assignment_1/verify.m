@@ -104,6 +104,7 @@ if strcmp(test_name, 'finite-duration HMM')
     end
 end
 
+
 %% verify vector-output HMM
 if strcmp(test_name, 'vector-output HMM')
     figure;
